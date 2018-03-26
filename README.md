@@ -1,1 +1,1 @@
-# ES6-LOTTO
+# es6-lotto
