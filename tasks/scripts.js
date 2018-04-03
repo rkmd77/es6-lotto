@@ -5,7 +5,7 @@ import gulpif from 'gulp-if';
 import concat from 'gulp-concat';		//处理文件拼接
 import webpack from 'webpack';
 import gulpWebpack from 'webpack-stream';
-import name from 'vinyl-named';		//对文件重命名，做标志的
+import named from 'vinyl-named';		//对文件重命名，做标志的
 import livereload from 'gulp-livereload';		//文件修改后浏览器自动刷新(热更新)
 import plumber from 'gulp-plumber';		//处理文件信息流
 import rename from 'gulp-rename';
@@ -16,7 +16,7 @@ import args from './util/args';			//对命令行参数进行解析的
 
 //用gulp创建一个脚本编译的任务
 gulp.task('scripts',()=>{
-	return gulp.scr(['app/js/index.js'])		// 1.打开文件
+	return gulp.src(['app/js/index.js'])		// 1.打开文件
 		//处理错误(webpack)
 		.pipe(plumber({
 			errorHandle:function(){
@@ -24,16 +24,15 @@ gulp.task('scripts',()=>{
 			}
 		}))
 		// 2. 对文件重新命名
-		.pipe(name())
+		.pipe(named())
 		// 3. 用webpack对js进行编译
-		.pipe(gulpWebpack({
-			module:{
-				loaders:[{
-					test:/\.js$/,
-					loader:'babel'
-				}]
-				
-			}
+		 .pipe(gulpWebpack({
+	      module:{
+	        loaders:[{
+	          test:/\.js$/,
+	          loader:'babel-loader'
+	        }]
+	      }
 		}),null,(err,stats)=>{		//对错误的处理
 			log(`Finished '${colors.cyan('scripts')}'`,stats.toString({
 				chunks:false
