@@ -19,9 +19,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-//服务器热更新，放在 app.use(express.static(path.join(__dirname, 'public'))); 下面才能生效
-app.use(require('connect-livereload')());
-
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
