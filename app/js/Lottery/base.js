@@ -47,7 +47,7 @@ class Base{
    */
   initNumber(){
     for(let i=1;i<12;i++){
-      this.number.add((''+i).padStart(2,'0'))
+      this.number.add((''+i).padStart(2,'0'))   //选中彩票号码不可能重复，这里通过add方法向Set数据结构添加（可以自动去重）, padStart 用来保证字符串保持2位数，如果不足2位前面补0
     }
   }
 
@@ -58,7 +58,7 @@ class Base{
   setOmit(omit){
     let self=this;
     self.omit.clear();
-    for(let [index,item] of omit.entries()){ //omit是个map结构
+    for(let [index,item] of omit.entries()){ //omit是个map结构，entries()是对键值对的遍历
       self.omit.set(index,item)
     }
     $(self.omit_el).each(function(index,item){

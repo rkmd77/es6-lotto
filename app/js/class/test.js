@@ -25,3 +25,16 @@ function Person(name) {
 var person = new Person("sheila");
 console.log(person.name); //cherry
 console.log(person); //Object {name: "cherry"}
+
+{
+    function foo() {
+        console.log(a);
+    }
+
+    function bar() {
+        let a = 3;
+        foo();
+    }
+    let a = 2;
+    bar()
+}
